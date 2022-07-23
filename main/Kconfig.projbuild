@@ -95,12 +95,12 @@ menu "Self-definec Configuration"
         config BUTTON_SHORT_PRESS_TIME_MS
             int "BUTTON SHORT PRESS TIME (MS)"
             range 50 800
-            default 100
+            default 180
     
         config BUTTON_LONG_PRESS_TIME_MS
             int "BUTTON LONG PRESS TIME (MS)"
             range 500 5000
-            default 1000
+            default 1500
     
         config ADC_BUTTON_MAX_CHANNEL
             int "ADC BUTTON MAX CHANNEL"

@@ -84,13 +84,14 @@ typedef struct {
 
 /**
  * @brief The blink type with smaller index has the higher priority
- * eg. BLINK_FACTORY_RESET priority is higher than BLINK_UPDATING
+ * eg. BLINK_SINGLE_CLICK priority is higher than BLINK_DOUBLE_CLICK
  */
 typedef enum {
-    BLINK_SINGLE_CLICK,           /**< restoring factory settings */
-    BLINK_DOUBLE_CLICK,                /**< updating software */ 
-    BLINK_LONG_PRESS,               /**< connected to AP (or Cloud) succeed */
-    BLINK_NO_PRESS, 
+    
+    BLINK_DOUBLE_CLICK,                /**< couble click */ 
+    BLINK_SINGLE_CLICK,           /**< single click */
+    BLINK_LONG_PRESS,               /**< long press */
+    BLINK_NO_PRESS,
     BLINK_MAX,                     /**< INVALIED type */ 
 } led_indicator_blink_type_t;
 

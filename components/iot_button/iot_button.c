@@ -55,7 +55,7 @@ static button_dev_t *g_head_handle = NULL;
 static esp_timer_handle_t g_button_timer_handle;
 static bool g_is_timer_running = false;
 
-#define TICKS_INTERVAL    CONFIG_BUTTON_PERIOD_TIME_MS  // 150
+#define TICKS_INTERVAL    CONFIG_BUTTON_PERIOD_TIME_MS
 #define DEBOUNCE_TICKS    CONFIG_BUTTON_DEBOUNCE_TICKS //MAX 8
 #define SHORT_TICKS       (CONFIG_BUTTON_SHORT_PRESS_TIME_MS /TICKS_INTERVAL)
 #define LONG_TICKS        (CONFIG_BUTTON_LONG_PRESS_TIME_MS /TICKS_INTERVAL)

@@ -69,28 +69,28 @@ static void button_press_up_cb(void *arg)
     ESP_LOGI(TAG_BUTTON, "BTN%s: BUTTON_PRESS_UP", get_btn_index((button_handle_t)arg));
 }
 
-static void button_press_repeat_cb(void *arg)
-{
-    //led_indicator_start(led_handle_0, BLINK_SINGLE_CLICK);
-    ESP_LOGI(TAG_BUTTON, "BTN%s: BUTTON_PRESS_REPEAT[%d]", get_btn_index((button_handle_t)arg), iot_button_get_repeat((button_handle_t)arg));
-}
-
 static void button_single_click_cb(void *arg)
 {
     //TEST_ASSERT_EQUAL_HEX(BUTTON_SINGLE_CLICK, iot_button_get_event(arg));
-    led_indicator_start(led_handle_0, BLINK_SINGLE_CLICK);
-    vTaskDelay(1000 / portTICK_RATE_MS);
-    led_indicator_stop(led_handle_0, BLINK_SINGLE_CLICK);
     ESP_LOGI(TAG_BUTTON, "BTN%s: BUTTON_SINGLE_CLICK", get_btn_index((button_handle_t)arg));
+    led_indicator_start(led_handle_0, BLINK_SINGLE_CLICK);
+    vTaskDelay(500 / portTICK_RATE_MS);
+    led_indicator_stop(led_handle_0, BLINK_SINGLE_CLICK);
 }
 
 static void button_double_click_cb(void *arg)
 {
     //TEST_ASSERT_EQUAL_HEX(BUTTON_DOUBLE_CLICK, iot_button_get_event(arg));
     led_indicator_start(led_handle_0, BLINK_DOUBLE_CLICK);
-    vTaskDelay(1000 / portTICK_RATE_MS);
+    vTaskDelay(500 / portTICK_RATE_MS);
     led_indicator_stop(led_handle_0, BLINK_DOUBLE_CLICK);
     ESP_LOGI(TAG_BUTTON, "BTN%s: BUTTON_DOUBLE_CLICK", get_btn_index((button_handle_t)arg));
+}
+
+static void button_press_repeat_cb(void *arg)
+{
+    //led_indicator_start(led_handle_0, BLINK_SINGLE_CLICK);
+    ESP_LOGI(TAG_BUTTON, "BTN%s: BUTTON_PRESS_REPEAT[%d]", get_btn_index((button_handle_t)arg), iot_button_get_repeat((button_handle_t)arg));
 }
 
 static void button_long_press_start_cb(void *arg)
@@ -102,7 +102,7 @@ static void button_long_press_start_cb(void *arg)
 static void button_long_press_hold_cb(void *arg)
 {
     //TEST_ASSERT_EQUAL_HEX(BUTTON_LONG_PRESS_HOLD, iot_button_get_event(arg));
-    //led_indicator_start(led_handle_0, BLINK_LONG_PRESS);
+    led_indicator_start(led_handle_0, BLINK_LONG_PRESS);
     // vTaskDelay(1000 / portTICK_RATE_MS);
     // led_indicator_stop(led_handle_0, BLINK_DOUBLE_CLICK);
     ESP_LOGI(TAG_BUTTON, "BTN%s: BUTTON_LONG_PRESS_HOLD", get_btn_index((button_handle_t)arg));
@@ -132,9 +132,9 @@ void iot_buttons_init(void)
     //TEST_ASSERT_NOT_NULL(g_btns[i]);
     iot_button_register_cb(g_btns[i], BUTTON_PRESS_DOWN, button_press_down_cb ,NULL);
     iot_button_register_cb(g_btns[i], BUTTON_PRESS_UP, button_press_up_cb ,NULL);
-    iot_button_register_cb(g_btns[i], BUTTON_PRESS_REPEAT, button_press_repeat_cb ,NULL);
     iot_button_register_cb(g_btns[i], BUTTON_SINGLE_CLICK, button_single_click_cb, NULL);
     iot_button_register_cb(g_btns[i], BUTTON_DOUBLE_CLICK, button_double_click_cb, NULL);
+    iot_button_register_cb(g_btns[i], BUTTON_PRESS_REPEAT, button_press_repeat_cb ,NULL);
     iot_button_register_cb(g_btns[i], BUTTON_LONG_PRESS_START, button_long_press_start_cb ,NULL);
     iot_button_register_cb(g_btns[i], BUTTON_LONG_PRESS_HOLD, button_long_press_hold_cb ,NULL);
     }

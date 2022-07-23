@@ -83,8 +83,6 @@ void init_led(void)
 #endif
 
 
-#define evaluate = true
-#ifdef evaluate
 #define LED_INDICATOR_CHECK(a, str, ret) if(!(a)) { \
         ESP_LOGE(TAG_LED,"%s:%d (%s):%s", __FILE__, __LINE__, __FUNCTION__, str); \
         return (ret); \
@@ -101,10 +99,11 @@ void init_led(void)
 
 /* 
  * @brief Button single click
+ * // the total time should be equal to the delay in callback
  */
 static const blink_step_t single_click[] = {
-    {LED_BLINK_HOLD, LED_STATE_ON, 100},
-    {LED_BLINK_HOLD, LED_STATE_OFF, 500},
+    {LED_BLINK_HOLD, LED_STATE_ON, 20},
+    {LED_BLINK_HOLD, LED_STATE_OFF, 480},
     //{LED_BLINK_LOOP, 0, 0},
 };
 
@@ -112,10 +111,10 @@ static const blink_step_t single_click[] = {
  * @brief Button double click
  */
 static const blink_step_t double_click[] = {
-    {LED_BLINK_HOLD, LED_STATE_ON, 100},
-    {LED_BLINK_HOLD, LED_STATE_OFF, 100},
-    {LED_BLINK_HOLD, LED_STATE_ON, 100},
-    {LED_BLINK_HOLD, LED_STATE_OFF, 100},
+    {LED_BLINK_HOLD, LED_STATE_ON, 50},
+    {LED_BLINK_HOLD, LED_STATE_OFF, 50},
+    {LED_BLINK_HOLD, LED_STATE_ON, 50},
+    {LED_BLINK_HOLD, LED_STATE_OFF, 350},
     //{LED_BLINK_LOOP, 0, 0},
 };
 
@@ -124,7 +123,7 @@ static const blink_step_t double_click[] = {
  */
 static const blink_step_t long_press[] = {
     {LED_BLINK_HOLD, LED_STATE_ON, 1000},
-    {LED_BLINK_LOOP, 0, 0},
+    //{LED_BLINK_LOOP, 0, 0},
 };
 
 /* 
@@ -471,4 +470,3 @@ esp_err_t led_indicator_stop(led_indicator_handle_t handle, led_indicator_blink_
 
     return ESP_OK;
 }
-#endif
