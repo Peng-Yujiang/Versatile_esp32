@@ -1,6 +1,6 @@
 # About project
 
-This is the buildable example based on esp-idf framework.
+This is the buildable files based on esp-idf framework. A versatile esp32 board with on board LED, two buttons, 0.96 inch display, BH1750, MPU6050, and MPU9250.
 
 ## Folder contents
 
