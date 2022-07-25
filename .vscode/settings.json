@@ -1,6 +1,14 @@
 {
     "idf.adapterTargetName": "esp32",
     "files.associations": {
-        "init_ssd1306.h": "c"
+        "init_ssd1306.h": "c",
+        "lvgl.h": "c",
+        "lv_hal.h": "c",
+        "lv_hal_disp.h": "c",
+        "lvgl_port.h": "c",
+        "lvgl_port_disp_init.h": "c",
+        "lv_port.h": "c",
+        "oled_init.h": "c",
+        "lv_port_disp_init.h": "c"
     }
 }
